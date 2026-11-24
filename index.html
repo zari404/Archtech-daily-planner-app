@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daily Planner</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app"><div class="wrap">
+  <section class="view on" id="v-today">
+    <div class="head"><div><div class="date" id="date"></div><h1>Today</h1></div><button class="btn" data-add="task">+ Add task</button></div>
+    <div class="cards" id="cards"></div>
+    <div class="bar"><h2 id="listTitle">All tasks</h2><select id="projFilter" aria-label="Filter by project"></select></div>
+    <div id="tasks"></div>
+  </section>
+  <section class="view" id="v-projects">
+    <div class="head"><h1>Projects</h1><button class="btn" data-add="project">+ New project</button></div>
+    <div class="pills" id="pills">
+      <button data-f="all" aria-pressed="true">All</button>
+      <button data-f="ongoing" aria-pressed="false">Ongoing</button>
+      <button data-f="completed" aria-pressed="false">Completed</button>
+    </div>
+    <div class="grid" id="projects"></div>
+  </section>
+  <section class="view" id="v-report">
+    <div class="head"><h1>Report</h1></div>
+    <div class="two">
+      <div class="big report-done"><b id="rDone">0</b>Tasks completed</div>
+      <div class="big report-open"><b id="rOpen">0</b>Tasks still open</div>
+    </div>
+    <div class="panels">
+      <div class="panel"><h3>Last 7 days</h3><div id="bars"></div><div class="legend"><span><i class="legend-done"></i>Completed</span><span><i class="legend-todo"></i>Added</span></div></div>
+      <div class="panel"><h3>Completed per day, last 14 days</h3><div id="line"></div></div>
+    </div>
+  </section>
+</div></div>
+
+<nav class="nav" aria-label="Main">
+  <div class="brand">Daily Planner</div>
+  <button class="nb" data-v="today" aria-current="page"><svg viewBox="0 0 24 24"><path d="M8 6h12M8 12h12M8 18h12M4 6h.01M4 12h.01M4 18h.01"/></svg>Today</button>
+  <button class="nb" data-v="projects"><svg viewBox="0 0 24 24"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>Projects</button>
+  <button class="fab" data-add="task" aria-label="Add task">+<span class="lab">New task</span></button>
+  <button class="nb" data-v="report"><svg viewBox="0 0 24 24"><path d="M5 20V10M12 20V4M19 20v-7"/></svg>Report</button>
+  <button class="nb push" id="theme" aria-label="Toggle dark mode"><svg viewBox="0 0 24 24"><path d="M21 13A9 9 0 1 1 11 3a7 7 0 0 0 10 10z"/></svg><span class="lab">Dark mode</span></button>
+</nav>
+
+<dialog id="tDlg"><form id="tForm" method="dialog">
+  <h2 id="tTitle">New task</h2>
+  <label for="tText">Task</label><input type="text" id="tText" maxlength="120" required>
+  <label for="tProj">Project</label><select id="tProj"></select>
+  <label for="tStatus">Status</label><select id="tStatus"><option value="todo">To do</option><option value="doing">In progress</option><option value="done">Done</option><option value="cancelled">Cancelled</option></select>
+  <div class="acts"><button type="button" class="del" id="tDel">Delete</button><button type="button" id="tClose">Close</button><button type="submit" class="save">Save</button></div>
+</form></dialog>
+
+<dialog id="pDlg"><form id="pForm" method="dialog">
+  <h2 id="pTitle">New project</h2>
+  <label for="pName">Project name</label><input type="text" id="pName" maxlength="40" required>
+  <label>Color</label><div class="sw" id="pColors"></div>
+  <div class="acts"><button type="button" class="del" id="pDel">Delete</button><button type="button" id="pClose">Close</button><button type="submit" class="save">Save</button></div>
+</form></dialog>
+<div id="toast" role="status" aria-live="polite"></div>
+<script src="script.js"></script>
+</body>
+</html>

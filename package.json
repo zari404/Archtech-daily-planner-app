@@ -1,0 +1,13 @@
+{
+  "name": "daily-planner-fullstack",
+  "version": "1.0.0",
+  "description": "A full-stack daily planner built with HTML, CSS, JavaScript and Node.js.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}
